@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pastel Product Store</title>
+    <!-- <style>
+        :root {
+            --bg-color: #1e1e1e;
+            --card-bg: #2e2e2e;
+            --text-color: #ffffff;
+            --btn-color: #000000;
+            --nav-bg: #292929;
+            --nav-hover: #444;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .store-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 20px 0;
+            text-align: center;
+        }
+        /* Navbar Styles */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background: var(--nav-bg);
+            padding: 15px 0;
+            width: 100%;
+        }
+        .nav-item {
+            margin: 0 15px;
+            padding: 10px 15px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .nav-item:hover, .nav-item.active {
+            background: var(--nav-hover);
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            width: 100%;
+        }
+        .product-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            text-align: center;
+            transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        .product-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        .product-card h3 {
+            margin: 10px 0;
+            font-size: 1.2rem;
+        }
+        .product-card p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 10px;
+        }
+        .product-card h4 {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            margin: 5px 0;
+        }
+        .buy-btn {
+            margin-top: 10px;
+            padding: 10px 15px;
+            background: var(--btn-color);
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: background 0.3s ease-in-out;
+        }
+    </style> -->
+
+    <style>
+      :root {
+        --bg-color: #1e1e1e;
+        --card-bg: #2e2e2e;
+        --text-color: #ffffff;
+        --btn-color: #000000;
+        --nav-bg: #292929;
+        --nav-hover: #444;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background: var(--bg-color);
+        color: var(--text-color);
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      /* Store Title */
+      .store-title {
+        font-size: 2rem;
+        font-weight: bold;
+        margin: 20px 0;
+        text-align: center;
+      }
+
+      /* Navbar Styles */
+      .navbar {
+        display: flex;
+        justify-content: center;
+        background: var(--nav-bg);
+        padding: 15px 0;
+        width: 100%;
+        overflow-x: auto; /* Enable horizontal scrolling on small screens */
+        white-space: nowrap; /* Prevent items from wrapping */
+        scrollbar-width: none; /* Hide scrollbar for Firefox */
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling for mobile */
+      }
+
+      /* Hide scrollbar in Chrome, Safari */
+      .navbar::-webkit-scrollbar {
+        display: none;
+      }
+
+      .nav-item {
+        margin: 0 15px;
+        padding: 10px 15px;
+        font-size: 1rem;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background 0.3s;
+        flex: 0 0 auto; /* Ensure items don’t shrink */
+      }
+
+      .nav-item:hover,
+      .nav-item.active {
+        background: var(--nav-hover);
+      }
+
+      /* Responsive Grid Layout */
+      .container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        padding: 20px;
+        max-width: 1200px;
+        width: 100%;
+      }
+
+      /* Product Card Styles */
+      .product-card {
+        background: var(--card-bg);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        padding: 15px;
+        text-align: center;
+        transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
+      }
+
+      .product-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .product-card img {
+        width: 100%;
+        height: 220px;
+        object-fit: contain;
+        border-radius: 8px;
+      }
+
+      .product-card h3 {
+        margin: 10px 0;
+        font-size: 1.2rem;
+      }
+
+      .product-card p {
+        font-size: 0.9rem;
+        opacity: 0.8;
+        margin-bottom: 10px;
+      }
+
+      .product-card h4 {
+        font-size: 1.2rem;
+        color: var(--text-color);
+        margin: 5px 0;
+      }
+
+      /* Buy Button */
+      .buy-btn {
+        margin-top: 10px;
+        padding: 10px 15px;
+        background: var(--btn-color);
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        display: inline-block;
+        transition: background 0.3s ease-in-out;
+      }
+
+      /* Responsive Adjustments */
+      @media (max-width: 1024px) {
+        .store-title {
+          font-size: 1.8rem;
+        }
+
+        .nav-item {
+          font-size: 0.9rem;
+          padding: 8px 12px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .store-title {
+          font-size: 1.5rem;
+        }
+
+        .navbar {
+          padding: 10px 0;
+        }
+
+        .nav-item {
+          margin: 0 10px;
+          font-size: 0.8rem;
+          padding: 6px 10px;
+        }
+
+        .container {
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 15px;
+        }
+
+        .product-card img {
+          height: 180px;
+        }
+
+        .product-card h3 {
+          font-size: 1rem;
+        }
+
+        .product-card p {
+          font-size: 0.8rem;
+        }
+
+        .buy-btn {
+          padding: 8px 12px;
+          font-size: 0.9rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .store-title {
+          font-size: 1.3rem;
+        }
+
+        .nav-item {
+          font-size: 0.7rem;
+          padding: 5px 8px;
+        }
+
+        .container {
+          grid-template-columns: 1fr;
+          gap: 10px;
+        }
+
+        .product-card img {
+          height: 150px;
+        }
+
+        .product-card h3 {
+          font-size: 0.9rem;
+        }
+
+        .product-card p {
+          font-size: 0.75rem;
+        }
+
+        .buy-btn {
+          padding: 6px 10px;
+          font-size: 0.8rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="store-title">Reels Product Store</div>
+
+    <!-- Category Navigation -->
+    <div class="navbar">
+      <div class="nav-item active" data-category="all">All</div>
+      <div class="nav-item" data-category="Makeup">Makeup</div>
+      <div class="nav-item" data-category="Skincare">Skincare</div>
+      <div class="nav-item" data-category="Iphone">Iphone</div>
+      <div class="nav-item" data-category="RCB">RCB</div>
+      <div class="nav-item" data-category="Cloths">Cloths</div>
+      <div class="nav-item" data-category="Decoration">Decoration</div>
+      <div class="nav-item" data-category="Gym">Gym</div>
+    </div>
+
+    <div class="container" id="product-container">
+      <!-- Products will be dynamically added here -->
+    </div>
+
+    <script>
+      const products = [
+        {
+          image: "https://m.media-amazon.com/images/I/61moPB8PnNL._SL1500_.jpg",
+          name: "RENEE Midnight Kohl Kajal Pencil",
+          price: "₹387",
+          category: "Makeup",
+          link: "https://amzn.to/40Ta04d",
+        },
+        {
+          image: "https://m.media-amazon.com/images/I/41TRCSw9sxL._SX679_.jpg",
+          name: "Clayco Hydrating Rice & Sake Sleep Mask",
+          price: "₹968",
+          category: "Skincare",
+          link: "https://amzn.to/4eABmPW",
+        },
+        {
+          image: "https://m.media-amazon.com/images/I/31MpnCSt1RL._SX450_.jpg",
+          name: "Gabit Skincare Gamechangers Kit | With Niacinamide & Hyaluronic Face Wash",
+          price: "₹1515",
+          category: "Skincare",
+          link: "https://amzn.to/4fneTqX",
+        },
+        {
+          image: "https://m.media-amazon.com/images/I/41uEIIav6sS.jpg",
+          name: "Happy Decor I Wooden Laddu Gopal Jhula",
+          price: "₹2199",
+          category: "Decoration",
+          link: "https://amzn.to/3YAMnfR",
+        },
+        {
+          image: "https://m.media-amazon.com/images/I/81Ou82Thm+L._SX425_.jpg",
+          name: "KUSHAL CREATIONS Krishna Ji Hands with Flute Figurine 24k Gold Plated with Blue Hand - 7 Inch Decorative",
+          price: "₹2499",
+          category: "Decoration",
+          link: "https://amzn.to/3zZWSir",
+        },
+        {
+          image: "https://m.media-amazon.com/images/I/61fISr5fFgL._SY450_.jpg",
+          name: "BON PURE WHEY | 1 Kg, 28 Servings Belgian Chocolate",
+          price: "₹2499",
+          category: "Gym",
+          link: "https://amzn.to/3ygub01",
+        },
+        {
+          image: "https://m.media-amazon.com/images/I/51eIttaD61L._SX522_.jpg",
+          name: "BELLAVITA Mini Kiss Proof Liquid Lipstick Gift Set of 4 x 2ml",
+          price: "₹480",
+          category: "Skincare",
+          link: "https://amzn.to/40uTqHK",
+        },
+        {
+          image:
+            "https://m.media-amazon.com/images/I/31QI4J9LZ4L._SX300_SY300_QL70_FMwebp_.jpg",
+          name: "Lakme Blush & Glow Exfoliating Face Wash with Vitamin C Serum",
+          price: "₹269",
+          category: "Skincare",
+          link: "https://amzn.to/40uTqHK",
+        },
+        {
+          image: "https://m.media-amazon.com/images/I/61S01eJnm3L._SX679_.jpg",
+          name: "Glamveda Korean Glass Skin Rice & Ceramide 6 Step Daily Skincare Routine For Women with Gift Box",
+          price: "₹832",
+          category: "Skincare",
+          link: "https://amzn.to/3ABls9M",
+        },
+        {
+          image:
+            "https://m.media-amazon.com/images/I/61GBQMBgD8L._SY679_PIbundle-2,TopRight,0,0_SX509SY679SH20_.jpg",
+          name: "Secret Lives Acrylic Fake Reusable False Artifical Press On Pink Color Nails",
+          price: "₹389",
+          category: "Skincare",
+          link: "https://amzn.to/3YtUEjL",
+        },
+        {
+          image: "https://m.media-amazon.com/images/I/81AC02ZDheL._SX679_.jpg",
+          name: "Alan Jones Clothing Women Polyester Fluffy Yarn Fleece Full-Zip Standard Length Jacket",
+          price: "₹897",
+          category: "Cloths",
+          link: "https://amzn.to/3O5CVua",
+        },
+        {
+          image: "https://m.media-amazon.com/images/I/31YMZGzUE9L.jpg",
+          name: "LLL FASHION Women Solid Casual Zipper Sweatshirt For Winter",
+          price: "₹499",
+          category: "Cloths",
+          link: "https://amzn.to/4hNnVPt",
+        },
+        {
+          image: "https://m.media-amazon.com/images/I/71wz3uReS2L._SY741_.jpg",
+          name: "Zilcon Women Fashion Fall Batwing Half Sleeve Shirts Boat Neck Oversized Tunic Tops",
+          price: "₹377",
+          category: "Cloths",
+          link: "https://amzn.to/48IngL0",
+        },
+        {
+          image: "https://m.media-amazon.com/images/I/61BBlDNERFL._SX679_.jpg",
+          name: "Istyle Can Slim Fit Plain Stretchable Round Neck Rib Knit Short Sleeve Regular Top",
+          price: "₹239",
+          category: "Cloths",
+          link: "https://amzn.to/3ULtL9T",
+        },
+        {
+          image: "https://m.media-amazon.com/images/I/51zRMrrxUwL.jpg",
+          name: " Holi Gifts Bura Na Mano Holi Hain Printed White Unisex T-Shirt",
+          price: "₹399",
+          category: "Cloths",
+          link: "https://amzn.to/41kmroa",
+        },
+        {
+          image: "https://m.media-amazon.com/images/I/81yxWl3rA3L._SX679_.jpg",
+          name: "Holi t-Shirt for Family|Regular |Dry fit|Happy Holi Printed| Half Sleeves t-Shirt",
+          price: "₹399",
+          category: "Cloths",
+          link: "https://amzn.to/41x5rML",
+        },
+        {
+          image: "https://m.media-amazon.com/images/I/51Cu1RAaCIL._SX679_.jpg",
+          name: "RCB Jersey 2024/25 Virat 18 for Kids,Boys,Men",
+          price: "₹369",
+          category: "RCB",
+          link: "https://amzn.to/3QxyM3D",
+        },
+        {
+          image: "https://m.media-amazon.com/images/I/51TNu+KjBUL.jpg",
+          name: "Sports Cricket CSK New Thala Dhoni 7 Jersey 2024/2025",
+          price: "₹399",
+          category: "Cloths",
+          link: "https://amzn.to/4gYohkr",
+        },
+        {
+          image: "https://m.media-amazon.com/images/I/613qbVSZCVL._SY741_.jpg",
+          name: "Zilcon Women Fashion Fall Batwing Half Sleeve Shirts",
+          price: "₹377",
+          category: "Cloths",
+          link: "https://amzn.to/41xuDmx",
+        },
+        {
+          image: "https://m.media-amazon.com/images/I/81a7Dd7wM0L._SY741_.jpg",
+          name: "Leriya Fashion Shirt for Women | Women Shirt",
+          price: "₹341",
+          category: "Cloths",
+          link: "https://amzn.to/3DbH5yX",
+        },
+        {
+          image: "https://m.media-amazon.com/images/I/71bi1TwCMGL._SY741_.jpg",
+          name: "Bollyclues Women Printed Rayon Shirt Top for Women",
+          price: "₹299",
+          category: "Cloths",
+          link: "https://amzn.to/4bkmYet",
+        },
+        {
+          image: "https://m.media-amazon.com/images/I/61av3JFUGDL._SY741_.jpg",
+          name: "Zilcon Womens Dressy Casual Business Work Tops Summer Half Sleeve Shirts",
+          price: "₹459",
+          category: "Cloths",
+          link: "https://amzn.to/4igeJ5g",
+        },
+        {
+          image: "https://m.media-amazon.com/images/I/61sZFOmh+yL._SX522_.jpg",
+          name: "mobistyle Designed for iPhone 15 Cover Cool Shining Shell Love Heart Pattern Design with TPU Edges Phone Back Cover Case",
+          price: "₹379",
+          category: "Iphone",
+          link: "https://amzn.to/4h1AzZw",
+        },
+        {
+          image: "https://m.media-amazon.com/images/I/51ysC4GIHIL._SX522_.jpg",
+          name: "Enflamo Soft Clear Silicone Case Glitter Floral Back Cover for iPhone 14 / iPhone 13",
+          price: "₹399",
+          category: "Iphone",
+          link: "https://amzn.to/4bhXLBj",
+        },
+        {
+          image: "https://m.media-amazon.com/images/I/61jPmL+pj4L._SX522_.jpg",
+          name: "LuxuryKase LK160 3D Butterfly Rhinestone Glitter Bracket Glossy Case Cover for iPhone 13",
+          price: "₹723",
+          category: "Iphone",
+          link: "https://amzn.to/4hXYAC6",
+        },
+        {
+          image: "https://m.media-amazon.com/images/I/713A-uekVtL._SY741_.jpg",
+          name: "Rcb Jersey 2025 for Womens",
+          price: "₹349",
+          category: "RCB",
+          link: "",
+        },
+      ];
+
+      const container = document.getElementById("product-container");
+      const navItems = document.querySelectorAll(".nav-item");
+
+      function getRandomColor() {
+        const colors = [
+          "#ff69b4",
+          "#ff4500",
+          "#1e90ff",
+          "#32cd32",
+          "#ff1493",
+          "#8a2be2",
+          "#ff8c00",
+          "#dc143c",
+        ];
+        return colors[Math.floor(Math.random() * colors.length)];
+      }
+
+      function loadProducts(category = "all") {
+        container.innerHTML = ""; // Clear previous products
+        products.forEach((product) => {
+          if (category === "all" || product.category === category) {
+            const card = document.createElement("div");
+            card.classList.add("product-card");
+
+            const button = document.createElement("a");
+            button.classList.add("buy-btn");
+            button.href = product.link;
+            button.target = "_blank";
+            button.textContent = "Buy Now";
+
+            card.innerHTML = `
+                        <img src="${
+                          product.image || "https://via.placeholder.com/250"
+                        }" alt="${product.name}">
+                        <h3>${product.name}</h3>
+                        <h4>${product.price}</h4>
+                    `;
+
+            card.appendChild(button);
+            container.appendChild(card);
+
+            // Assign a random hover effect for each card
+            card.addEventListener("mouseenter", () => {
+              card.style.background = getRandomColor();
+            });
+            card.addEventListener("mouseleave", () => {
+              card.style.background = "var(--card-bg)";
+            });
+
+            // Assign a random hover effect for each button
+            button.addEventListener("mouseenter", () => {
+              button.style.background = getRandomColor();
+            });
+            button.addEventListener("mouseleave", () => {
+              button.style.background = "var(--btn-color)";
+            });
+          }
+        });
+      }
+
+      navItems.forEach((item) => {
+        item.addEventListener("click", () => {
+          navItems.forEach((nav) => nav.classList.remove("active"));
+          item.classList.add("active");
+          loadProducts(item.getAttribute("data-category"));
+        });
+      });
+
+      document.addEventListener("DOMContentLoaded", () => loadProducts());
+    </script>
+  </body>
+</html>
