@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Reels Product Store</title>
-    <meta name="google-site-verification" content="-5wlE2td6e_tv67g340PwnjsRkoA8dJmA8Rs8pX5hQo" />
+    <meta
+      name="google-site-verification"
+      content="-5wlE2td6e_tv67g340PwnjsRkoA8dJmA8Rs8pX5hQo"
+    />
     <style>
       :root {
         --bg-color: #1e1e1e;
@@ -187,6 +190,10 @@
           font-size: 1.3rem;
         }
 
+        .navbar {
+          justify-content:left;
+        }
+
         .nav-item {
           font-size: 0.7rem;
           padding: 5px 8px;
@@ -194,9 +201,15 @@
 
         .container {
           grid-template-columns: 1fr;
-          gap: 10px;
+          gap: 26px;
+          align-items: center;
+          display: flex;
+          flex-direction: column;
         }
 
+        .product-card {
+          width: 80%;
+        }
         .product-card img {
           height: 150px;
         }
@@ -214,8 +227,8 @@
           font-size: 0.8rem;
         }
       }
-    </style> 
-</head>
+    </style>
+  </head>
   <body>
     <div class="store-title">Reels Product Store</div>
 
@@ -280,7 +293,8 @@
           link: "https://amzn.to/4hVdMzF",
         },
         {
-          image: "https://m.media-amazon.com/images/I/61h5DAu8jHL._SX522_PIbundle-2,TopRight,0,0_AA522SH20_.jpg",
+          image:
+            "https://m.media-amazon.com/images/I/61h5DAu8jHL._SX522_PIbundle-2,TopRight,0,0_AA522SH20_.jpg",
           name: "iORA Prebiotic Glow Ritual combo | Foaming Facewash (100 ml) + Glow Mask ",
           price: "₹1018",
           category: "Beauty",
@@ -294,7 +308,8 @@
           link: "https://amzn.to/4eABmPW",
         },
         {
-          image: "https://m.media-amazon.com/images/I/71A7tvxJXPL._SX679_PIbundle-3,TopRight,0,0_AA679SH20_.jpg",
+          image:
+            "https://m.media-amazon.com/images/I/71A7tvxJXPL._SX679_PIbundle-3,TopRight,0,0_AA679SH20_.jpg",
           name: "Ghar Soaps Sandalwood & Saffron Magic Soaps For Bath",
           price: "₹399",
           category: "Skincare",
@@ -581,7 +596,7 @@
           price: "₹969",
           category: "RCB",
           link: "https://amzn.to/3XnDEvN",
-        }
+        },
       ];
 
       const container = document.getElementById("product-container");
